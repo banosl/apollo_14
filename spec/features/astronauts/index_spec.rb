@@ -25,7 +25,7 @@ RSpec.describe "Astronauts Index", type: :feature do
       it 'see average age of all astronauts' do
         visit "/astronauts"
 
-        expect(page).to have_content("Average ages of astronauts #{@astronauts.average_ages}")
+        expect(page).to have_content("Average ages of astronauts: #{Astronaut.average_ages}")
       end
 
       it 'see list of space missions in alphabetical order for each astronaut'
