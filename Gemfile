@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.2'
+ruby '2.7.4'
 
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -32,3 +32,4 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'bootsnap', require: false
