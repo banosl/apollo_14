@@ -12,14 +12,15 @@ RSpec.describe "Astronauts Index", type: :feature do
       it 'see a list of astronauts with name, age, job' do
         visit "/astronauts"
 
+        save_and_open_page
         expect(page).to have_content(@astronaut_1.name)
         expect(page).to have_content(@astronaut_2.name)
         expect(page).to have_content(@astronaut_3.name)
-        expect(page).to have_content(@astronaut_2.age)
-        expect(page).to have_content(@astronaut_3.age)
-        expect(page).to have_content(@astronaut_1.job)
-        expect(page).to have_content(@astronaut_2.job)
-        expect(page).to_no have_content("Apple Pie Baker")
+        expect(page).to have_content("Age: #{@astronaut_2.age}")
+        expect(page).to have_content("Age: #{@astronaut_3.age}")
+        expect(page).to have_content("Job: #{@astronaut_1.job}")
+        expect(page).to have_content("Job: #{@astronaut_2.job}")
+        expect(page).to_not have_content("Apple Pie Baker")
       end
 
       it 'see average age of all astronauts'
