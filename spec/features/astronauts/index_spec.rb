@@ -12,7 +12,6 @@ RSpec.describe "Astronauts Index", type: :feature do
       it 'see a list of astronauts with name, age, job' do
         visit "/astronauts"
 
-        save_and_open_page
         expect(page).to have_content(@astronaut_1.name)
         expect(page).to have_content(@astronaut_2.name)
         expect(page).to have_content(@astronaut_3.name)
@@ -23,7 +22,11 @@ RSpec.describe "Astronauts Index", type: :feature do
         expect(page).to_not have_content("Apple Pie Baker")
       end
 
-      it 'see average age of all astronauts'
+      it 'see average age of all astronauts' do
+        visit "/astronauts"
+
+        expect(page).to have_content("Average ages of astronauts #{@astronauts.average_ages}")
+      end
 
       it 'see list of space missions in alphabetical order for each astronaut'
 
