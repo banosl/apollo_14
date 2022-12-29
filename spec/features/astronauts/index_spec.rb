@@ -3,8 +3,23 @@ require 'rails_helper'
 RSpec.describe "Astronauts Index", type: :feature do
   describe 'as a user' do
     describe 'when I visit /astronauts' do
+      before :each do
+        @astronaut_1 = Astronaut.create({name: "Neil Armstrong", age: 37, job: "Commander"})
+        @astronaut_2 = Astronaut.create({name: "Mae Jemison", age: 66, job: "Astronaut"})
+        @astronaut_3 = Astronaut.create({name: "Jonny Kim", age: 38, job: "Astronaut"})
+      end
+     
       it 'see a list of astronauts with name, age, job' do
+        visit "/astronauts"
 
+        expect(page).to have_content(@astronaut_1.name)
+        expect(page).to have_content(@astronaut_2.name)
+        expect(page).to have_content(@astronaut_3.name)
+        expect(page).to have_content(@astronaut_2.age)
+        expect(page).to have_content(@astronaut_3.age)
+        expect(page).to have_content(@astronaut_1.job)
+        expect(page).to have_content(@astronaut_2.job)
+        expect(page).to_no have_content("Apple Pie Baker")
       end
 
       it 'see average age of all astronauts'
