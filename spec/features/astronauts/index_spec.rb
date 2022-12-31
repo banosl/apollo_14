@@ -46,10 +46,11 @@ RSpec.describe "Astronauts Index", type: :feature do
         it 'see list of space missions in alphabetical order for each astronaut' do
           visit "/astronauts"
 
+          save_and_open_page
           within ("#astronaut-#{@astronaut_1.id}") do
-          expect(mission_3).to appear_before(mission_2)
-          expect(mission_1).to appear_before(mission_2)
-          expect(mission_1).to appear_before(mission_3)
+          expect(mission_2).to appear_before(mission_1)
+          expect(mission_1).to_not appear_before(mission_2)
+          expect(mission_1).to_not appear_before(mission_3)
           end
         end
       end
