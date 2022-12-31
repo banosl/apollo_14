@@ -36,5 +36,11 @@ describe Astronaut, type: :model do
     it 'sorts missions alphabetically' do
         expect(@astronaut_1.missions_alpha).to eq([@mission_2, @mission_3, @mission_1])
     end
+
+    it 'adds the total time in space for each astronaut' do
+      expect(@astronaut_1.total_time_in_space).to eq(672)
+      expect(@astronaut_2.total_time_in_space).to eq(458)
+      expect(@astronaut_3.total_time_in_space).to eq(359)
+    end
   end
 end
