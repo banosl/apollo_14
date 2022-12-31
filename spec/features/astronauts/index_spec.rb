@@ -46,7 +46,6 @@ RSpec.describe "Astronauts Index", type: :feature do
         it 'see list of space missions in alphabetical order for each astronaut' do
           visit "/astronauts"
 
-          save_and_open_page
           within ("#astronaut-#{@astronaut_1.id}") do
           expect(mission_2).to appear_before(mission_1)
           expect(mission_1).to_not appear_before(mission_2)
@@ -55,7 +54,16 @@ RSpec.describe "Astronauts Index", type: :feature do
         end
       end
 
-      it 'see the total time in space for each astronaut'
+      it 'see the total time in space for each astronaut' do
+        visit "/astronauts"
+
+        within ("#astronaut-#{@astronaut_1.id}") do
+          expect(page).to have_content("Total time in space: #{@astronaut_1.total_time_in_space}")
+        end
+        within ("#astronaut-#{@astronaut_2.id}") do
+          expect(page).to have_content("Total time in space: #{@astronaut_2.total_time_in_space}")
+        end
+      end
     end
   end
 end
