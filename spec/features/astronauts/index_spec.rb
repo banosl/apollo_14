@@ -18,10 +18,6 @@ RSpec.describe "Astronauts Index", type: :feature do
         @astronaut_mission_6 = AstronautMission.create({astronaut_id: @astronaut_3.id, mission_id: @mission_2.id})
         @astronaut_mission_7 = AstronautMission.create({astronaut_id: @astronaut_3.id, mission_id: @mission_3.id})
       end
-
-      let(:mission_1) {"#{@mission_1.title}"}
-      let(:mission_2) {"#{@mission_2.title}"}
-      let(:mission_3) {"#{@mission_3.title}"}
      
       it 'see a list of astronauts with name, age, job' do
         visit "/astronauts"
@@ -42,13 +38,19 @@ RSpec.describe "Astronauts Index", type: :feature do
         expect(page).to have_content("Average ages of astronauts: #{Astronaut.average_ages}")
       end
 
-      it 'see list of space missions in alphabetical order for each astronaut' do
-        visit "/astronauts"
+      describe 'alphabet method' do
+        let(:mission_1) {"#{@mission_1.title}"}
+        let(:mission_2) {"#{@mission_2.title}"}
+        let(:mission_3) {"#{@mission_3.title}"}
 
-        within ("#astronaut-#{@astronaut_1.id}") do
+        it 'see list of space missions in alphabetical order for each astronaut' do
+          visit "/astronauts"
+
+          within ("#astronaut-#{@astronaut_1.id}") do
           expect(mission_3).to appear_before(mission_2)
           expect(mission_1).to appear_before(mission_2)
           expect(mission_1).to appear_before(mission_3)
+          end
         end
       end
 
